@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from .forms import CustomUserCreationForm
 
 def user_login(request):
     if request.method == 'POST':
@@ -16,12 +18,15 @@ def user_login(request):
 
 def signup(request):
     if request.method == 'POST':
-        User.objects.create_user(
-            username=request.POST['username'],
-            password=request.POST['password']
-        )
-        return redirect('login')
-    return render(request, 'accounts/signup.html')
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:login')
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, 'accounts/signup.html', {'form': form})
+
 
 def user_logout(request):
     logout(request)

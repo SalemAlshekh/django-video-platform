@@ -4,16 +4,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .models import Video
 
 
+@login_required
 def home(request):
-    """
-    الصفحة الرئيسية
-    - عرض جميع الفيديوهات
-    - متاحة للجميع (مستخدم أو زائر)
-    """
-    videos = Video.objects.all().order_by('-created_at')
-    return render(request, 'videos/home.html', {
-        'videos': videos
-    })
+    return render(request, 'videos/home.html')
 
 
 @staff_member_required

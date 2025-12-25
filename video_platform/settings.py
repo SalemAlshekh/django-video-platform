@@ -132,5 +132,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import os
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG') == 'True'
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'videos:home'
+LOGOUT_REDIRECT_URL = 'accounts:login'
+
 
 
