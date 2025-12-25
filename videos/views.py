@@ -4,7 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .models import Video
 
 
-@login_required
+@login_required(login_url='accounts:login')
 def home(request):
     return render(request, 'videos/home.html')
 
