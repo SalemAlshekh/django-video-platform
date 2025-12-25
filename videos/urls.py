@@ -4,5 +4,5 @@ app_name = 'videos'
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('upload/', views.upload_video, name='upload'),
+    path('video/<int:pk>/', views.video_detail, name='video_detail'),
 ]
